@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'electrotecnia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': 'dfgekrk78a8rgg',                     
+        'USER': 'wutxhrdnnawyah',
+        'PASSWORD': 'mup8l1DHf7DNs8imZiiROBmnwY',
+        'HOST': 'ec2-54-163-235-165.compute-1.amazonaws.com', # Or something like this
+        'PORT': '5432',                     
     }
 }
 
