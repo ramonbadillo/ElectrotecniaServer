@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from .models import Registry
-from gadgets.serializers import GadgetSerializerReg
+#from gadgets.serializers import GadgetSerializerReg
 
 
 
 
 class RegistrySerializer(serializers.HyperlinkedModelSerializer):
     
-    idGadget = GadgetSerializerReg()
+#    idGadget = GadgetSerializerReg()
     
     class Meta:
         model = Registry
