@@ -9,3 +9,6 @@ class Registry(models.Model):
     date = models.DateTimeField()
     idGadget = models.ForeignKey(Gadget)
     idDev = models.ForeignKey(Device)
+    
+    def __unicode__(self):
+            return str(self.id)
