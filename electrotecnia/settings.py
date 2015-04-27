@@ -40,7 +40,9 @@ INSTALLED_APPS = (
     'devices',
     'gadgets',
     'registrys',
+    #'userprofiles',
     'rest_framework',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,7 +95,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 
@@ -147,8 +149,13 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny',
+        
     ]
 }
+REST_SESSION_LOGIN = False
+#AUTHENTICATION_BACKENDS = (
+#    'userprofiles.backends.EmailBackend',
 
+#)
 
