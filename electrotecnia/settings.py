@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'devices',
+    'records',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,6 +81,7 @@ WSGI_APPLICATION = 'electrotecnia.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 import dj_database_url
+'''
 DATABASES = {
 'default': dj_database_url.config(default='sqlite:///db.sqlite')
 }
@@ -85,14 +89,14 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dfgekrk78a8rgg',
-        'USER': 'wutxhrdnnawyah',
-        'PASSWORD': 'mup8l1DHf7DNs8imZiiROBmnwY',
-        'HOST': 'ec2-54-163-235-165.compute-1.amazonaws.com', # Or something like this
+        'NAME': 'd9bcde5096k0og',
+        'USER': 'synwacqamigvrd',
+        'PASSWORD': 'c9O9RS18z5J2EQRH37IVjiMfn_',
+        'HOST': 'ec2-107-21-114-132.compute-1.amazonaws.com', # Or something like this
         'PORT': '5432',
     }
 }
-'''
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
