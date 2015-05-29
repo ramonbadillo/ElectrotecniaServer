@@ -5,8 +5,9 @@ class Record(models.Model):
     watts = models.FloatField()
     amp = models.FloatField()
     volts = models.FloatField()
-    date = models.DateTimeField()
-
+    idKill = models.PositiveIntegerField(null=True)
+    timeStampClient = models.DateTimeField(null=True)
+    timestampServer = models.DateTimeField(auto_now=True,null=True)
     idDev = models.ForeignKey(Device)
 
     def __unicode__(self):

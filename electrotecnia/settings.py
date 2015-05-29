@@ -37,8 +37,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    #3RD PARTY APPS
+    'rest_framework',
+    'registration',
+
+    #MY APPS
     'devices',
     'records',
+
 
 )
 
@@ -58,7 +66,7 @@ ROOT_URLCONF = 'electrotecnia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 
-
+SITE_NAME = 'Electrotecnia'
+SITE_ID = 1
 
 
 
@@ -145,7 +154,7 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
+#API SETTINGS
 REST_FRAMEWORK = {
     # Use hyperlinked styles by default.
     # Only used if the `serializer_class` attribute is not set on a view.
@@ -164,3 +173,7 @@ REST_SESSION_LOGIN = False
 #    'userprofiles.backends.EmailBackend',
 
 #)
+
+#REDUX SETTINGS
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
