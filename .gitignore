@@ -1,7 +1,3 @@
 venv
 *.pyc
-<<<<<<< HEAD
 staticfiles
-=======
-staticfiles
->>>>>>> 0339671924fedaf831644945f347abc8f42e3d81
