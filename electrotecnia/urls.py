@@ -26,6 +26,7 @@ router.register(r'devices',DeviceViewSet)
 
 
 urlpatterns = [
+    url(r'^$', 'devices.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/',include(router.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),

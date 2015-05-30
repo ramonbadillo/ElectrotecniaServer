@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    #Framework APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,8 +43,9 @@ INSTALLED_APPS = (
     #3RD PARTY APPS
     'rest_framework',
     'registration',
+    'crispy_forms',
 
-    #MY APPS
+    #MY APPS :)
     'devices',
     'records',
 
@@ -127,7 +129,7 @@ USE_TZ = True
 
 
 SITE_NAME = 'Electrotecnia'
-SITE_ID = 1
+
 
 
 
@@ -174,6 +176,14 @@ REST_SESSION_LOGIN = False
 
 #)
 
+
+#CRYSPY SETTINGS
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
 #REDUX SETTINGS
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
