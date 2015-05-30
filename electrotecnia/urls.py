@@ -18,11 +18,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 from records.views import RecordViewSet
+from records.views import UserViewSet
 from devices.views import DeviceViewSet
+
+
 
 router = routers.DefaultRouter()
 router.register(r'records',RecordViewSet)
 router.register(r'devices',DeviceViewSet)
+router.register(r'users',UserViewSet)
+
 
 
 urlpatterns = [
