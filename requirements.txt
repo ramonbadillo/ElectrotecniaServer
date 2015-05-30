@@ -1,5 +1,6 @@
 dj-database-url==0.3.0
 dj-static==0.0.6
+<<<<<<< HEAD
 Django==1.8.2
 django-crispy-forms==1.4.0
 django-registration-redux==1.2
@@ -8,4 +9,13 @@ djangorestframework==3.1.2
 gunicorn==19.3.0
 psycopg2==2.6
 static3==0.6.1
+=======
+Django==1.8
+django-bootstrap-form==3.2
+django-toolbelt==0.0.1
+djangorestframework==3.1.1
+gunicorn==19.3.0
+psycopg2==2.6
+static3==0.5.1
+>>>>>>> 0339671924fedaf831644945f347abc8f42e3d81
 whitenoise==1.0.6
