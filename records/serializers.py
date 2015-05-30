@@ -11,4 +11,4 @@ class RecordSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Record
-        fields = ('watts','amp','volts','idKill','timeStampClient','timestampServer','idDev')
+        fields = ('watts','amp','volts','idKill','timeStampClient','timestampServer','idDev','user')

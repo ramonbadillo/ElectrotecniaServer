@@ -4,6 +4,7 @@ from .models import Device
 from rest_framework import viewsets
 from .serializers import DeviceSerializer
 
+
 class DeviceViewSet(viewsets.ModelViewSet):
     model = Device
     queryset = Device.objects.all()
@@ -12,6 +13,7 @@ class DeviceViewSet(viewsets.ModelViewSet):
 def home(request):
     context = {}
     if request.user.is_authenticated():
+
         context = {
             "queryset" : [123,456]
 
