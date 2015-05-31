@@ -52,7 +52,7 @@ def home(request):
             print daysData.aggregate(Sum('watts'))
             deviceData = {
                 "idKill" : device['idKill'],
-                "data" : daysData.aggregate(Sum('watts'))['watts__sum'],
+                "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
                 "device" : idDev['idDev']
             }
 
