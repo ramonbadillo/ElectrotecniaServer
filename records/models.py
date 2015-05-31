@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Record(models.Model):
     watts = models.FloatField()
+    kwh = models.FloatField(null=True)
     amp = models.FloatField()
     volts = models.FloatField()
     idKill = models.PositiveIntegerField(null=True)

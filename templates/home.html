@@ -12,7 +12,7 @@
 
 
 	{% if request.user.is_authenticated %}
-	{{queryset}}
+
 	<!-- Example row of columns -->
 	<div class="row">
 		<div class="col-md-2">
@@ -92,6 +92,9 @@
 			</div>
 
 		</div>
+
+
+
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading"><a href="#" class="pull-right">Ver más</a> <h4>Medidor</h4></div>
@@ -150,6 +153,7 @@
 
 		</div>
 	</div>
+
 
 
 
@@ -248,6 +252,7 @@
 			</div>
 
 		</div>
+
 		<div class="col-md-4">
 
 			<div class="panel panel-default">
@@ -291,6 +296,83 @@
 			</div>
 		</div>
 	</div>
+
+
+
+	{%for instance in queryset%}
+
+
+
+
+
+
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><a href="#" class="pull-right">Ver más</a> <h4>kill-a-watt #{{instance.idKill}}</h4></div>
+						<div class="panel-body">
+
+
+							<div id="device{{instance.idKill}}"></div>
+
+
+							<script>
+							var chart1 = c3.generate({
+								bindto: '#device{{instance.idKill}}',
+								data: {
+									columns: [
+										[ 'kill-a-watt {{instance.idKill}}', {{instance.data}} ]
+									],
+									type: 'gauge',
+									onmouseover: function (d, i) { console.log("onmouseover", d, i, this); },
+									onmouseout: function (d, i) { console.log("onmouseout", d, i, this); },
+									onclick: function (d, i) { console.log("onclick", d, i, this); },
+								},
+								gauge: {
+									label: {
+										format: function(value, ratio) {
+											return value;
+										},
+										//          show: false // to turn off the min/max labels.
+									},
+									//          min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage // current flow / rate of change
+									max: 600, // 100 is default
+									units: ' kWh',
+									//          width: 39 // for adjusting arc thickness
+								},
+								color: {
+									pattern: ['#60B044', '#F6C600', '#FF0000'], // the three color levels for the percentage values.
+									threshold: {
+										//unit: 'KW', // percentage is default
+										//max: 600, // 100 is default
+										values: [150, 280, 500] // alternate first value is 'value'
+									},
+								},
+								size: {
+									height: 240
+								}
+							});
+
+
+							//      setInterval(cycleDemo, 30000);
+							</script>
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+				</div>
+
+
+
+
+
+
+	{% endfor %}
+
+
 
 	{% endif %}
 
