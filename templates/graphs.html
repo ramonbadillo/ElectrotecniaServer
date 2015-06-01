@@ -1,0 +1,139 @@
+<!-- Example row of columns -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href="#" class="pull-right">Ver más</a> <h4>Lavadora</h4></div>
+      <div class="panel-body">
+
+
+        <div id="Lavadora"></div>
+
+        <script>
+        var chart = c3.generate({
+          bindto: '#Lavadora',
+          axis: {
+            y: {
+              max: 121,
+              min: 90,
+            }
+          },
+          data: {
+            x : 'x',
+            columns: [
+              ['x', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+              ['sample', 93, 94, 99, 101, 93, 99, 99, 101, 96, 99, 94, 99, 94, 93, 96, 93, 94, 103, 101, 103, 102, 104, 94, 99, 98, 100, 102, 97, 101, 103],
+
+            ],
+
+          },
+
+          grid: {
+            y: {
+              lines: [
+                {value: 90, text: 'Comsumo Minimo', position: 'start'},
+                {value: 100, text: 'Consumo Primedio', position: 'middle'},
+                {value: 120, text: 'Consumo Maximo'}
+              ]
+            }
+          },
+          size: {
+            height: 240
+          },
+          legend: {
+            show: false
+          }
+        });
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href="#" class="pull-right">Ver más</a> <h4>Televisión</h4></div>
+      <div class="panel-body">
+
+        <div id="Television"></div>
+
+        <script>
+        var chart = c3.generate({
+          bindto: '#Television',
+          data: {
+            x : 'x',
+            columns: [
+              ['x', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+              ['sample', 106, 108, 116, 120, 110, 130, 95, 96, 127, 107, 126, 96, 104, 102, 99, 106, 103, 100, 123, 95, 100, 119, 97, 104, 119, 118, 114, 104, 112, 120],
+
+            ],
+          },
+          axis: {
+            y: {
+              default: [90, 124]
+            }
+          },
+          grid: {
+            y: {
+              lines: [
+                {value: 92, text: 'Computadora en espera'},
+                {value: 123, text: 'Computadora editando videos ', position: 'start'},
+                {value: 110, text: 'Computadora en internet', position: 'middle'}
+              ]
+            }
+          },
+          size: {
+            height: 240
+          },
+          legend: {
+            show: false
+          }
+        });
+        </script>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href="#" class="pull-right">Ver Más</a> <h4>Computadora</h4></div>
+      <div class="panel-body">
+
+
+        <div id="Computadora"></div>
+        <script>
+        var chart = c3.generate({
+          bindto: '#Computadora',
+          data: {
+            x : 'x',
+            columns: [
+              ['x', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+              ['sample', 106, 108, 116, 120, 110, 130, 95, 96, 127, 107, 126, 96, 104, 102, 99, 106, 103, 100, 123, 95, 100, 119, 97, 104, 119, 118, 114, 104, 112, 120],
+            ],
+
+          },
+
+          grid: {
+            y: {
+              lines: [
+                {value: 50, text: 'Lable 50 for y'},
+                {value: 1300, text: 'Lable 1300 for y2', axis: 'y2', position: 'start'},
+                {value: 350, text: 'Lable 350 for y', position: 'middle'}
+              ]
+            }
+          },
+          size: {
+            height: 240
+          },
+          legend: {
+            show: false
+          }
+        });
+        </script>
+
+
+      </div>
+    </div>
+  </div>
+</div>

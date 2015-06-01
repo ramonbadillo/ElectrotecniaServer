@@ -7,7 +7,10 @@ from .serializers import RecordSerializer
 from .serializers import UserSerializer
 from rest_framework import viewsets
 from django.db.models import Sum
+from pprint import pprint
 import datetime
+from datetime import date
+import calendar
 
 class RecordViewSet(viewsets.ModelViewSet):
     model = Record
@@ -20,12 +23,25 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 def home(request):
-    context = {}
 
+
+    context = {}
     dataGraph = []
     deviceData = {}
     daysData = {}
     idDev = {}
+    currentWatts = 0
+    totalKwh = 0
+    totalCurrentW = 0
+    deviceName = {}
+    lastUpdate = {}
+    #the max and the min Values for the gauges
+    maxVal = 0
+    minVal = 0
+
+    #
+    monthFormated = 0
+    yearFormated = 0
     #manejar excepcion de que no este la fecha
     #date = request.GET['date']
     #print date
@@ -37,29 +53,51 @@ def home(request):
         month = '%02d' % d.month
         year = '%04d' % d.year
 
+    print "rango"
 
-
+    monthFormated = int(month)
+    yearFormated = int(year)
+    print (date(2015, int(month)+1, 1) - date(2015,5, 1)).days
 
     if request.user.is_authenticated():
         result = Record.objects.filter(user = request.user.id,timeStampClient__year=year,
-        timeStampClient__month=month)#.values('idKill').distinct()
+        timeStampClient__month=month)
+
         devices = result.values('idKill').distinct()
+
+        #For each device in the list make a dictionary with the necesary info to make the gauge
         for device in devices:
-            #print device['idKill']
+
             daysData = result.filter(idKill=device['idKill'])
-            idDev = daysData.values('idDev').latest('timeStampClient')#.latest('timeStampClient')
-            #print idDev['idDev']
-            print daysData.aggregate(Sum('watts'))
+            idDev = daysData.values('idDev').latest('timeStampClient')
+            lastUpdate = daysData.values('timestampServer').latest('timeStampClient')
+
+
+            currentWatts = daysData.values('watts').latest('timeStampClient')
+            totalKwh += daysData.aggregate(Sum('kwh'))['kwh__sum']
+            totalCurrentW += currentWatts['watts']
+
+            deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avarage')
+
+
+
             deviceData = {
                 "idKill" : device['idKill'],
+                "currentWatts" : currentWatts['watts'],
                 "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
-                "device" : idDev['idDev']
+                "deviceName" : deviceName[0],
+                "lastUpdate" : lastUpdate['timestampServer'],
+                "maxVal" : deviceName[0]['avarage']*1.5,
+                "minVal" : deviceName[0]['avarage']/2,
             }
 
             dataGraph.append(deviceData)
             #print deviceData
         context = {
-            "queryset" : dataGraph
+            "queryset" : dataGraph,
+            "total" : totalKwh/1000,
+            "totalCurrentW" : totalCurrentW,
+            "fecha" : str(month) + "/" + str(year)
             #"devices" : result.values('idKill').distinct()
         }
 
