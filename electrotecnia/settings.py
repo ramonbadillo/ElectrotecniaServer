@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     #MY APPS :)
     'devices',
     'records',
+    'gadgets',
 
 
 )

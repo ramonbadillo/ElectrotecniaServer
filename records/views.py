@@ -10,7 +10,7 @@ from django.db.models import Sum
 from pprint import pprint
 import datetime
 from datetime import date
-import calendar
+from calendar import monthrange
 
 class RecordViewSet(viewsets.ModelViewSet):
     model = Record
@@ -53,11 +53,15 @@ def home(request):
         month = '%02d' % d.month
         year = '%04d' % d.year
 
+
+
     print "rango"
 
     monthFormated = int(month)
     yearFormated = int(year)
-    print (date(2015, int(month)+1, 1) - date(2015,5, 1)).days
+    week , days = monthrange( yearFormated , monthFormated)
+    print days
+
 
     if request.user.is_authenticated():
         result = Record.objects.filter(user = request.user.id,timeStampClient__year=year,
@@ -74,17 +78,18 @@ def home(request):
 
 
             currentWatts = daysData.values('watts').latest('timeStampClient')
+
             totalKwh += daysData.aggregate(Sum('kwh'))['kwh__sum']
             totalCurrentW += currentWatts['watts']
 
             deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avarage')
-
-
+            #for day in range(0,days[1])
+            #    print day
 
             deviceData = {
                 "idKill" : device['idKill'],
                 "currentWatts" : currentWatts['watts'],
-                "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
+                "data" : daysData.aggregate(Sum('kwh'))['kwh__sum']/1000,
                 "deviceName" : deviceName[0],
                 "lastUpdate" : lastUpdate['timestampServer'],
                 "maxVal" : deviceName[0]['avarage']*1.5,

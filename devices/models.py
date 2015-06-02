@@ -11,4 +11,4 @@ class Device(models.Model):
     #user = models.ForeignKey(User)
 
     def __unicode__(self):
-            return str(self.id)
+            return self.name

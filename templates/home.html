@@ -12,7 +12,7 @@
 		<div class="col-md-2">
 
 			<div class="panel panel-default">
-				<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Abril 2015</h4></div>
+				<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>{{fecha}}</h4></div>
 				<div class="panel-body">
 					<div class="list-group">
 						<address>
@@ -22,6 +22,7 @@
 							San Francisco, CA 94107<br>
 							<abbr title="Phone">P:</abbr> (123) 456-7890
 						</address>
+
 					</div>
 				</div>
 			</div>
@@ -213,15 +214,42 @@
 							</script>
 
 
+							<hr>
+							<div class="btn-group pull-right btn-toggle">
+
+
+
+							{%if instance.lastUpdate|timesince != "0 minutos"%}
+
+								Ultimo registro <span class="label label-warning"> {{instance.lastUpdate|timesince}}</span>
+							{%else%}
+
+								Ultimo registro <span class="label label-success"> {{instance.lastUpdate|timesince}}</span>
+							{% endif %}
+							</div>
+
 
 						</div>
 
-						Ultimo registro {{instance.lastUpdate|timesince}}
 					</div>
 
 
 				</div>
 				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	{% endfor %}
 
@@ -250,11 +278,12 @@
         <h1>Bienvenido</h1>
         <p>No has ingresado al sistema, por favor logeate para mostrarte tu informacion</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}">Login</a>
+          <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}">Entrar</a>
         </p>
       </div>
 
     </div>
+
 
 
 

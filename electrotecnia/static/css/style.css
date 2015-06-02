@@ -141,4 +141,12 @@ h3,h4,h5 {
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
+	max-width: 350px;
+}
+
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
