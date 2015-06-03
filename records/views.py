@@ -38,10 +38,13 @@ def home(request):
     #the max and the min Values for the gauges
     maxVal = 0
     minVal = 0
-
+    valuesStacked = []
     #
     monthFormated = 0
     yearFormated = 0
+    deviceStacked = ""
+    listOfDevices = ""
+    dataOfDay = 0
     #manejar excepcion de que no este la fecha
     #date = request.GET['date']
     #print date
@@ -63,7 +66,18 @@ def home(request):
     print days
 
 
+
     if request.user.is_authenticated():
+
+        axisX = "[ \'x\',"
+        for day in range(1,days+1):
+            axisX +=  str(day) + ","
+        axisX += "],"
+
+        listOfDevices += "[" #['Refrigerador','Television','Computadora','Caminadora']
+
+
+
         result = Record.objects.filter(user = request.user.id,timeStampClient__year=year,
         timeStampClient__month=month)
 
@@ -83,9 +97,15 @@ def home(request):
             totalCurrentW += currentWatts['watts']
 
             deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avarage')
-            #for day in range(0,days[1])
-            #    print day
 
+
+
+
+
+#['x', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,],
+#	['lavadora', 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,20,],
+#    ['television', 130, 100, 100, 200, 150, 50,10,20,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,100,],
+#    ['computadora', 230, 200, 200, 0, 250, 250,200,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,20,100.],
             deviceData = {
                 "idKill" : device['idKill'],
                 "currentWatts" : currentWatts['watts'],
@@ -96,13 +116,37 @@ def home(request):
                 "minVal" : deviceName[0]['avarage']/2,
             }
 
+
+            deviceStacked = "[ \'"
+
+            deviceStacked += deviceName[0]['name']
+            deviceStacked += "\',"
+            for day in range(1,days+1):
+                dataOfDay = daysData.filter(timeStampClient__day=day).aggregate(Sum('kwh'))['kwh__sum']
+
+                if dataOfDay is None:
+                    dataOfDay = "0"
+                deviceStacked +=  str(dataOfDay) + ","
+            deviceStacked +=  "],"
+            #print deviceStacked
+
+            valuesStacked.append(deviceStacked)
+            #print valuesStacked[0]
+            listOfDevices +="\'"
+            listOfDevices += deviceName[0]['name']
+            listOfDevices +="\',"
+
             dataGraph.append(deviceData)
+        listOfDevices += "]"
             #print deviceData
         context = {
             "queryset" : dataGraph,
             "total" : totalKwh/1000,
             "totalCurrentW" : totalCurrentW,
-            "fecha" : str(month) + "/" + str(year)
+            "fecha" : str(month) + "/" + str(year),
+            "axisX" : axisX,
+            "valuesStacked": valuesStacked,
+            "listOfDevices" : listOfDevices
             #"devices" : result.values('idKill').distinct()
         }
 

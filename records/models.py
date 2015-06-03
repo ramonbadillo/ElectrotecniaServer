@@ -12,7 +12,8 @@ class Record(models.Model):
     idKill = models.PositiveIntegerField()
     timeStampClient = models.DateTimeField()
     timestampServer = models.DateTimeField(auto_now=True)
-    idGadget = models.ForeignKey(Gadget, null=True,blank = True)
+    idDev = models.ForeignKey(Device, null=True,blank = True)
+    #idGad = models.ForeignKey(Gadget, blank=True, null=True, default=0)
     user = models.ForeignKey(User)
 
     def __unicode__(self):
@@ -31,6 +32,7 @@ class Record(models.Model):
         #self.my_stuff = 'something I want to save in that field'
 
         ##self.idDev = Gadget.objects.filter(idKill = self.idKill)
-
-        self.idDev = Gadget.objects.filter(idKill = self.idKill)
+        #checar excepcion para cuando no exista ningun gadget
+        #idDevNew = Gadget.objects.filter(idKill = self.idKill).values('idDev')[0]['idDev']
+        #self.idDev = Device.objects.get(pk=idDevNew)
         super(Record, self).save(*args, **kwargs)

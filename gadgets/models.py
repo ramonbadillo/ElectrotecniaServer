@@ -4,7 +4,7 @@ from devices.models import Device
 
 class Gadget(models.Model):
     name = models.CharField(max_length=60)
-    idKill = models.PositiveIntegerField( unique= True)
+    idKill = models.PositiveIntegerField()
     user = models.ForeignKey(User)
     idDev = models.ForeignKey(Device)
 
