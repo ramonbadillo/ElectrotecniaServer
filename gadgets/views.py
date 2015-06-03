@@ -10,7 +10,7 @@ class GadgetViewSet(viewsets.ModelViewSet):
     model = Gadget
     queryset = Gadget.objects.all()
     serializer_class = GadgetSerializer
-    
-def gadgetDashboard(request,maca):
-    gadget = get_object_or_404(Gadget,user=maca)
-    return render(request,'dashboard.html',{'gadget':gadget})
+
+def gadgetUpdate(request):
+    #gadget = get_object_or_404(Gadget,user=maca)
+    return render(request,'gadgetUpdate.html',{})

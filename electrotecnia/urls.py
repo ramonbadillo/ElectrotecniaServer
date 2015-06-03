@@ -24,6 +24,7 @@ from devices.views import DeviceViewSet
 
 
 
+
 router = routers.DefaultRouter()
 router.register(r'records',RecordViewSet)
 router.register(r'devices',DeviceViewSet)
@@ -33,7 +34,9 @@ router.register(r'users',UserViewSet)
 
 urlpatterns = [
     url(r'^$', 'records.views.home', name='home'),
+    url(r'^gadget_update/', 'gadgets.views.gadgetUpdate', name='gadgetUpdate'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/',include(router.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
+
 ]

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class="col-md-5">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <i class="glyphicon glyphicon-phone pull-right"></i>
+        <h4>Actualizar Gadget</h4>
+      </div>
+    </div>
+    <div class="panel-body">
+      <form class="form form-vertical">
+        <div class="control-group">
+          <label>Nombre</label>
+          <div class="controls">
+            <input type="text" class="form-control" placeholder="Enter Name">
+            <br>
+
+
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Kill-a-Watt</label>
+          <div class="controls">
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+            </label>
+            <br>
+
+
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Aparato</label>
+          <div class="controls">
+            <select class="form-control">
+              <option>Television</option>
+              <option>Computadora</option>
+              <option>Refrigerador</option>
+              <option>Caminadora</option>
+              <option>Lavadora</option>
+            </select>
+            <br>
+
+
+          </div>
+        </div>
+        <div class="control-group">
+          <label></label>
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--/panel content-->
+  </div>
+</div>
+{% endblock %}
