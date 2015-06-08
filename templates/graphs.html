@@ -137,3 +137,34 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+var generate = function () { return c3.generate({
+  data: {
+    x : 'x',
+    columns: [
+      {{axisX|escape| safe}}
+      {%for i in valuesStacked%}
+
+      {{i|escape| safe}}
+
+      {% endfor %}
+      ['Vecinos', 230, 200, 200, 0, 2500, 250,200,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,20,100,],
+      ['Amigos', 130, 100, 100, 200, 1500, 50,10,20,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,100,],
+    ],
+    type: 'bar',
+    types: {
+
+    Vecinos: 'line',
+    Amigos: 'line',
+    },
+    groups: [
+      {{listOfDevices|escape| safe}}
+    ]
