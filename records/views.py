@@ -58,12 +58,12 @@ def home(request):
 
 
 
-    print "rango"
+
 
     monthFormated = int(month)
     yearFormated = int(year)
     week , days = monthrange( yearFormated , monthFormated)
-    print days
+    
 
 
 
@@ -109,7 +109,7 @@ def home(request):
             deviceData = {
                 "idKill" : device['idKill'],
                 "currentWatts" : currentWatts['watts'],
-                "data" : daysData.aggregate(Sum('kwh'))['kwh__sum']/1000,
+                "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
                 "deviceName" : deviceName[0],
                 "lastUpdate" : lastUpdate['timestampServer'],
                 "maxVal" : deviceName[0]['avarage']*1.5,
@@ -143,7 +143,7 @@ def home(request):
             "queryset" : dataGraph,
             "total" : totalKwh/1000,
             "totalCurrentW" : totalCurrentW,
-            "fecha" : str(month) + "/" + str(year),
+            "fecha" : datetime.datetime.strptime( "01"+ ""+str(month) + "" + str(year), "%d%m%Y").date(),
             "axisX" : axisX,
             "valuesStacked": valuesStacked,
             "listOfDevices" : listOfDevices

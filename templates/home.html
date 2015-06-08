@@ -12,7 +12,7 @@
 	<div class="col-md-2">
 
 		<div class="panel panel-default">
-			<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>{{fecha}}</h4></div>
+			<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>{{fecha|date:"F Y"}}</h4></div>
 			<div class="panel-body">
 				<div class="list-group">
 					<address>
@@ -52,9 +52,15 @@
 							{{i|escape| safe}}
 
 							{% endfor %}
-
+							['Vecinos', 230, 200, 200, 0, 2500, 250,200,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,20,100,],
+							['Amigos', 130, 100, 100, 200, 1500, 50,10,20,200,200,200, 30, 200, 200, 400, 150, 250,100,20,100,100,100, 30, 200, 200, 400, 150, 250,100,100,],
 						],
 						type: 'bar',
+						types: {
+
+            Vecinos: 'line',
+						Amigos: 'line',
+        		},
 						groups: [
 							{{listOfDevices|escape| safe}}
 						]
@@ -107,7 +113,7 @@
 					bindto: '#chart1',
 					data: {
 						columns: [
-							[ 'consumo de {{fecha}}', {{total}} ]
+							[ 'consumo de {{fecha|date:"F Y"}}', {{total|floatformat:3}} ]
 						],
 						type: 'gauge',
 						onmouseover: function (d, i) { console.log("onmouseover", d, i, this); },
@@ -180,7 +186,7 @@
 				bindto: '#device{{instance.idKill}}',
 				data: {
 					columns: [
-						[ 'kill-a-watt {{instance.idKill}}', {{instance.data}} ]
+						[ 'kill-a-watt {{instance.idKill}}', {{instance.data|floatformat:3}} ]
 					],
 					type: 'gauge',
 					onmouseover: function (d, i) { console.log("onmouseover", d, i, this); },
@@ -196,7 +202,7 @@
 					},
 					//          min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage // current flow / rate of change
 					max: {{instance.maxVal}}, // 100 is default
-					units: ' kWh',
+					units: ' Wh',
 					//          width: 39 // for adjusting arc thickness
 				},
 				color: {
