@@ -15,6 +15,7 @@ class Record(models.Model):
     idDev = models.ForeignKey(Device, null=True,blank = True)
     #idGad = models.ForeignKey(Gadget, blank=True, null=True, default=0)
     user = models.ForeignKey(User)
+    realTime = models.BooleanField(default=True)
 
     def __unicode__(self):
             return str(self.id)
