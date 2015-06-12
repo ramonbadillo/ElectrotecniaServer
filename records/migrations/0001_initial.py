@@ -8,8 +8,8 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('devices', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('devices', '__first__'),
     ]
 
     operations = [
@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
                 ('idKill', models.PositiveIntegerField()),
                 ('timeStampClient', models.DateTimeField()),
                 ('timestampServer', models.DateTimeField(auto_now=True)),
+                ('realTime', models.BooleanField(default=True)),
                 ('idDev', models.ForeignKey(blank=True, to='devices.Device', null=True)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],

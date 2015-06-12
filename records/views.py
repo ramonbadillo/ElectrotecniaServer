@@ -63,7 +63,7 @@ def home(request):
     monthFormated = int(month)
     yearFormated = int(year)
     week , days = monthrange( yearFormated , monthFormated)
-    
+
 
 
 
@@ -96,7 +96,7 @@ def home(request):
             totalKwh += daysData.aggregate(Sum('kwh'))['kwh__sum']
             totalCurrentW += currentWatts['watts']
 
-            deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avarage')
+            deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avgValue')
 
 
 
@@ -112,8 +112,8 @@ def home(request):
                 "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
                 "deviceName" : deviceName[0],
                 "lastUpdate" : lastUpdate['timestampServer'],
-                "maxVal" : deviceName[0]['avarage']*1.5,
-                "minVal" : deviceName[0]['avarage']/2,
+                "maxVal" : deviceName[0]['avgValue']*1.5,
+                "minVal" : deviceName[0]['avgValue']/2,
             }
 
 

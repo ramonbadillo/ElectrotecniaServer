@@ -6,4 +6,4 @@ class DeviceSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Device
-        fields = ('name','avarage','modelo')
+        fields = ('name','modelo','avgValue','topValue','botValue')

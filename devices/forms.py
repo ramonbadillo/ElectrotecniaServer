@@ -4,4 +4,4 @@ from .models import Device
 class DeviceForm(forms.ModelForm):
     class Meta:
         model = Device
-        fields = ['name','modelo','avarage']
+        fields = ['name','modelo','avgValue','topValue','botValue']
