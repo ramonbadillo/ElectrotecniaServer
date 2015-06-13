@@ -196,7 +196,7 @@
 						//          show: false // to turn off the min/max labels.
 					},
 					//          min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage // current flow / rate of change
-					max: {{instance.maxVal}}, // 100 is default
+					max: {{instance.maxVal.topValue}}, // 100 is default
 					units: ' Wh',
 					//          width: 39 // for adjusting arc thickness
 				},
@@ -205,7 +205,7 @@
 					threshold: {
 						//unit: 'KW', // percentage is default
 						//max: 600, // 100 is default
-						values: [{{instance.minVal}}, {{instance.deviceName.avgValue}}, {{instance.maxVal}}] // alternate first value is 'value'
+						values: [{{instance.minVal.botValue}}, {{instance.deviceName.avgValue}}, {{instance.maxVal.topValue}}] // alternate first value is 'value'
 					},
 				},
 				size: {

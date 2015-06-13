@@ -97,9 +97,11 @@ def home(request):
             totalCurrentW += currentWatts['watts']
 
             deviceName = Device.objects.filter(pk = idDev['idDev']).values('name','avgValue')
+            topValue = Device.objects.filter(pk = idDev['idDev']).values('name','topValue')
+            botValue =  Device.objects.filter(pk = idDev['idDev']).values('name','botValue')
 
 
-
+            print str(topValue[0])
 
 
 #['x', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,],
@@ -112,8 +114,9 @@ def home(request):
                 "data" : daysData.aggregate(Sum('kwh'))['kwh__sum'],
                 "deviceName" : deviceName[0],
                 "lastUpdate" : lastUpdate['timestampServer'],
-                "maxVal" : deviceName[0]['avgValue']*1.5,
-                "minVal" : deviceName[0]['avgValue']/2,
+                "maxVal" : topValue[0],
+                "minVal" : botValue[0],
+
             }
 
 
